@@ -1,0 +1,4 @@
+---
+# defaults file for unbound
+
+unbound_temporary_directory: /tmp

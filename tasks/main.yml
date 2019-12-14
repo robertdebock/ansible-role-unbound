@@ -1,0 +1,73 @@
+---
+# tasks file for unbound
+- name: install requirements
+  package:
+    name: "{{ unbound_requirements }}"
+    state: present
+  register: unbound_install_requirements
+  until: unbound_install_requirements is succeeded
+  retries: 3
+
+- name: download archive
+  unarchive:
+    src: "https://nlnetlabs.nl/downloads/unbound/unbound-latest.tar.gz"
+    dest: "{{ unbound_temporary_directory }}"
+    remote_src: yes
+  register: unbound_download_archive
+  until: unbound_download_archive is succeeded
+  retries: 3
+
+- name: find unarchived directory
+  find:
+    path: "{{ unbound_temporary_directory }}"
+    file_type: directory
+    pattern: 'unbound-*'
+  register: unbound_find_unarchived_directory
+
+- name: save unarchived directory
+  set_fact:
+    unbound_chdir: "{{ unbound_find_unarchived_directory.files[0].path }}"
+
+- name: configure
+  command: ./configure
+  args:
+    chdir: "{{ unbound_chdir }}"
+    creates: "{{ unbound_chdir }}/Makefile"
+
+- name: make
+  command: make
+  args:
+    chdir: "{{ unbound_chdir }}"
+    creates: unbound
+
+- name: make install
+  command: make install
+  args:
+    chdir: "{{ unbound_chdir }}"
+    creates: /usr/local/sbin/unbound
+
+- name: make group unbound
+  group:
+    name: unbound
+    system: yes
+
+- name: make user unbound
+  user:
+    name: unbound
+    group: unbound
+    system: yes
+
+- name: create service
+  include_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: unbound
+        description: Validating, recursive, caching DNS resolver
+        start_command: /usr/local/sbin/unbound -d
+
+- name: start and enable unbound
+  service:
+    name: unbound
+    state: started
+    enabled: yes

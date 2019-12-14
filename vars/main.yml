@@ -1,0 +1,26 @@
+---
+# vars file for unbound
+_unbound_requirements:
+  Alpine:
+    - diff
+    - expat-dev
+    - file
+    - openssl-dev
+  Archlinux:
+    - diff
+    - expat
+    - file
+    - openssl
+  Debian:
+    - diff
+    - expat-dev
+    - file
+    - libssl-dev
+  RedHat: &rhelish
+    - diffutils
+    - expat-devel
+    - file
+    - openssl-devel
+  SUSE: *rhelish
+
+unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default']) }}"
