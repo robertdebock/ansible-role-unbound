@@ -12,10 +12,15 @@
   unarchive:
     src: "https://nlnetlabs.nl/downloads/unbound/unbound-latest.tar.gz"
     dest: "{{ unbound_temporary_directory }}"
+    list_files: yes
     remote_src: yes
   register: unbound_download_archive
   until: unbound_download_archive is succeeded
   retries: 3
+
+- name: show bla
+  debug:
+    var: unbound_download_archive
 
 - name: find unarchived directory
   find:
