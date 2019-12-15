@@ -13,8 +13,8 @@ _unbound_requirements:
     - openssl
   Debian:
     - diffutils
-    - expat-dev
     - file
+    - libexpat1-dev
     - libssl-dev
   RedHat: &rhelish
     - diffutils
