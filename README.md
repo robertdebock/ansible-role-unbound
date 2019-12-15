@@ -2,7 +2,7 @@ unbound
 =========
 
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
-<a href="https://travis-ci.org/robertdebock/ansible-role-unbound"> <img src="https://travis-ci.org/robertdebock/ansible-role-unbound.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
+<a href="https://travis-ci.org/robertdebock/ansible-role-unbound"> <img src="https://travis-ci.org/robertdebock/ansible-role-unbound.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/45335"/> <img src="https://img.shields.io/ansible/quality/45335"/>
 
 Install and configure unbound on your system.
 
@@ -32,6 +32,7 @@ The machine you are running this on, may need to be prepared, I use this playboo
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.buildtools
+    - role: robertdebock.core_dependencies
 ```
 
 
@@ -60,6 +61,7 @@ The following roles can be installed to ensure all requirements are met, using `
 ---
 - robertdebock.bootstrap
 - robertdebock.buildtools
+- robertdebock.core_dependencies
 - robertdebock.service
 
 ```
