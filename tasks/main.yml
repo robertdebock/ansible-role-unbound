@@ -18,20 +18,10 @@
   until: unbound_download_archive is succeeded
   retries: 3
 
-- name: show bla
-  debug:
-    var: unbound_download_archive
-
-- name: find unarchived directory
-  find:
-    path: "{{ unbound_temporary_directory }}"
-    file_type: directory
-    pattern: 'unbound-*'
-  register: unbound_find_unarchived_directory
-
 - name: save unarchived directory
   set_fact:
-    unbound_chdir: "{{ unbound_find_unarchived_directory.files[0].path }}"
+    # unbound_chdir: "{{ unbound_find_unarchived_directory.files[0].path }}"
+    unbound_chdir: "{{ unbound_temporary_directory }}/{{ unbound_download_archive.files | first }}"
 
 - name: configure
   command: ./configure
