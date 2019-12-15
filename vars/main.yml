@@ -16,11 +16,15 @@ _unbound_requirements:
     - file
     - libexpat1-dev
     - libssl-dev
-  RedHat: &rhelish
+  RedHat:
     - diffutils
     - expat-devel
     - file
     - openssl-devel
-  Suse: *rhelish
+  Suse:
+    - diffutils
+    - libexpat-devel
+    - file
+    - openssl-devel
 
 unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default']) }}"
