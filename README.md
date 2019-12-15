@@ -82,7 +82,6 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tags|
 |---------|----|
-|alpine|all|
 |archlinux|all|
 |debian|all|
 |el|7, 8|
@@ -96,6 +95,14 @@ The minimum version of Ansible required is 2.8 but tests have been done to:
 - The current version.
 - The development version.
 
+Exceptions
+----------
+
+Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+
+| variation                 | reason                 |
+|---------------------------|------------------------|
+| alpine | Idempotence test failed: start and enable unbound |
 
 
 Testing
