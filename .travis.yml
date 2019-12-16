@@ -14,6 +14,7 @@ env:
   global:
     namespace="robertdebock"
   matrix:
+    - image="amazonlinux"
     # - namespace="archlinux" image="base"
     - image="debian" tag="unstable"
     - image="debian"
