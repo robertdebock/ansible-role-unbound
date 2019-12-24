@@ -4,6 +4,8 @@ unbound
 <img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
 <a href="https://travis-ci.org/robertdebock/ansible-role-unbound"> <img src="https://travis-ci.org/robertdebock/ansible-role-unbound.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/45335"/> <img src="https://img.shields.io/ansible/quality/45335"/>
 
+<a href="https://github.com/robertdebock/ansible-role-unbound/actions"><img src="https://github.com/robertdebock/ansible-role-unbound/workflows/GitHub%20Action/badge.svg"/></a>
+
 Install and configure unbound on your system.
 
 Example Playbook
@@ -35,6 +37,38 @@ The machine you are running this on, may need to be prepared, I use this playboo
     - role: robertdebock.core_dependencies
 ```
 
+After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
+```yaml
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _nslookup_package:
+      default:
+        - hostname
+      Amazon-2018:
+        - net-tools
+      Alpine:
+        - net-tools
+      Archlinux:
+        - net-tools
+      CentOS:
+        - dbus
+
+    nslookup_package: "{{ _nslookup_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_nslookup_package[ansible_distribution] | default(_nslookup_package['default'])) }}"
+
+  tasks:
+    - name: install nslookup
+      package:
+        name: "{{ nslookup_package }}"
+        state: present
+
+    - name: nslookup robertdebock.com
+      command: nslookup robertdebock.com
+```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 

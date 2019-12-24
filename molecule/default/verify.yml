@@ -1,0 +1,29 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _nslookup_package:
+      default:
+        - hostname
+      Amazon-2018:
+        - net-tools
+      Alpine:
+        - net-tools
+      Archlinux:
+        - net-tools
+      CentOS:
+        - dbus
+
+    nslookup_package: "{{ _nslookup_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_nslookup_package[ansible_distribution] | default(_nslookup_package['default'])) }}"
+
+  tasks:
+    - name: install nslookup
+      package:
+        name: "{{ nslookup_package }}"
+        state: present
+
+    - name: nslookup robertdebock.com
+      command: nslookup robertdebock.com
