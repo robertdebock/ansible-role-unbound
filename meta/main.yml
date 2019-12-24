@@ -12,9 +12,6 @@ galaxy_info:
       versions:
         - Candidate
         - 2018.03
-    - name: ArchLinux
-      versions:
-        - all
     - name: Debian
       versions:
         - all
