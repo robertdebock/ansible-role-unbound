@@ -24,7 +24,7 @@
     unbound_chdir: "{{ unbound_temporary_directory }}/{{ unbound_download_archive.files | first }}"
 
 - name: configure
-  command: ./configure
+  command: ./configure --enable-systemd
   args:
     chdir: "{{ unbound_chdir }}"
     creates: "{{ unbound_chdir }}/Makefile"
@@ -52,14 +52,16 @@
     group: unbound
     system: yes
 
-- name: create service
-  include_role:
-    name: robertdebock.service
-  vars:
-    service_list:
-      - name: unbound
-        description: Validating, recursive, caching DNS resolver
-        start_command: /usr/local/sbin/unbound -d
+- name: install service
+  copy:
+    src: "{{ unbound_chdir }}/contrib/unbound.service"
+    dest: /etc/systemd/system/unbound.service
+    remote_src: yes
+  notify:
+    - systemctl daemon-reload
+
+- name: flush handlers
+  meta: flush_handlers
 
 - name: start and enable unbound
   service:

@@ -1,5 +1,9 @@
 ---
 # handlers file for unbound
+- name: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
+
 - name: restart unbound
   service:
     name: "{{ unbound_service }}"

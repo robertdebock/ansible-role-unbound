@@ -6,25 +6,30 @@ _unbound_requirements:
     - expat-dev
     - file
     - openssl-dev
+    - systemd-dev
   Archlinux:
     - diff
     - expat
     - file
     - openssl
+    - systemd
   Debian:
     - diffutils
     - file
     - libexpat1-dev
     - libssl-dev
+    - systemd-dev
   RedHat:
     - diffutils
     - expat-devel
     - file
     - openssl-devel
+    - systemd-devel
   Suse:
     - diffutils
     - libexpat-devel
     - file
     - openssl-devel
+    - systemd-devel
 
 unbound_requirements: "{{ _unbound_requirements[ansible_os_family] | default(_unbound_requirements['default']) }}"

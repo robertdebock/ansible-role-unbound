@@ -48,15 +48,7 @@ After running this role, this playbook runs to verify that everything works, thi
   vars:
     _nslookup_package:
       default:
-        - hostname
-      Amazon-2018:
         - net-tools
-      Alpine:
-        - net-tools
-      Archlinux:
-        - net-tools
-      CentOS:
-        - dbus
 
     nslookup_package: "{{ _nslookup_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_nslookup_package[ansible_distribution] | default(_nslookup_package['default'])) }}"
 
@@ -96,7 +88,6 @@ The following roles can be installed to ensure all requirements are met, using `
 - robertdebock.bootstrap
 - robertdebock.buildtools
 - robertdebock.core_dependencies
-- robertdebock.service
 
 ```
 
