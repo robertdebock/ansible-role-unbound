@@ -18,7 +18,7 @@ _unbound_requirements:
     - file
     - libexpat1-dev
     - libssl-dev
-    - systemd-dev
+    - libsystemd-dev
   RedHat:
     - diffutils
     - expat-devel

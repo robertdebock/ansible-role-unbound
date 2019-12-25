@@ -48,7 +48,7 @@ After running this role, this playbook runs to verify that everything works, thi
   vars:
     _nslookup_package:
       default:
-        - net-tools
+        - bind-utils
 
     nslookup_package: "{{ _nslookup_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_nslookup_package[ansible_distribution] | default(_nslookup_package['default'])) }}"
 
@@ -58,8 +58,8 @@ After running this role, this playbook runs to verify that everything works, thi
         name: "{{ nslookup_package }}"
         state: present
 
-    - name: nslookup robertdebock.com
-      command: nslookup robertdebock.com
+    - name: nslookup robertdebock.nl
+      command: nslookup robertdebock.nl
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
