@@ -49,8 +49,10 @@ After running this role, this playbook runs to verify that everything works, thi
     _nslookup_package:
       default:
         - bind-utils
+      Debian:
+        - dnsutils
 
-    nslookup_package: "{{ _nslookup_package[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_nslookup_package[ansible_distribution] | default(_nslookup_package['default'])) }}"
+    nslookup_package: "{{ _nslookup_package[ansible_os_family] | default(_nslookup_package['default']) }}"
 
   tasks:
     - name: install nslookup
