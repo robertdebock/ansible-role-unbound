@@ -18,9 +18,9 @@ jobs:
   lint:
     needs:
       - checkout
-   steps:
-     - name: ansible-lint
-       uses: ansible/ansible-lint-action@v4.1.0.post0
+    steps:
+      - name: ansible-lint
+        uses: ansible/ansible-lint-action@v4.1.0.post0
   test:
     needs:
       - lint
