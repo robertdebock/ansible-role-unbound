@@ -63,6 +63,13 @@
 - name: flush handlers
   meta: flush_handlers
 
+- name: configure unbound
+  template:
+    src: unbound.conf.j2
+    dest: /usr/local/etc/unbound/unbound.conf
+  notify:
+    - restart unbound
+
 - name: start and enable unbound
   block:
     - name: start and enable unbound

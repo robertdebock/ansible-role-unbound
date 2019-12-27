@@ -74,7 +74,14 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for unbound
 
+# Where to unpack unbound.
 unbound_temporary_directory: /tmp
+
+# The interface to listen on.
+unbound_interface: 127.0.0.1
+
+# The port to listen on.
+unbound_interface: 53
 ```
 
 Requirements
