@@ -81,7 +81,7 @@ unbound_temporary_directory: /tmp
 unbound_interface: 127.0.0.1
 
 # The port to listen on.
-unbound_interface: 53
+unbound_port: 53
 ```
 
 Requirements
