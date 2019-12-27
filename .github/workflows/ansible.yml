@@ -15,12 +15,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
+    runs-on: ubuntu-latest
   lint:
     needs:
       - checkout
     steps:
       - name: ansible-lint
         uses: ansible/ansible-lint-action@v4.1.0.post0
+    runs-on: ubuntu-latest
   test:
     needs:
       - lint

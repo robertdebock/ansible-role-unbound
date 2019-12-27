@@ -47,7 +47,7 @@ server:
 	# interface: 192.0.2.154
 	# interface: 192.0.2.154@5003
 	# interface: 2001:DB8::5
-        interface "{{ unbound_interface }}"
+        interface: {{ unbound_interface }}
 
 	# enable this feature to copy the source address of queries to reply.
 	# Socket options are not supported on all platforms. experimental.
@@ -55,7 +55,7 @@ server:
 
 	# port to answer queries from
 	# port: 53
-        unbound_port: "{{ unbound_port }}"
+        unbound_port: {{ unbound_port }}
 
 	# specify the interfaces to send outgoing queries to authoritative
 	# server from by ip-address. If none, the default (all) interface
