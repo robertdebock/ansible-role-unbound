@@ -64,7 +64,20 @@
   meta: flush_handlers
 
 - name: start and enable unbound
-  service:
-    name: unbound
-    state: started
-    enabled: yes
+  block:
+    - name: start and enable unbound
+      service:
+        name: unbound
+        state: started
+        enabled: yes
+      register: unbound_start_and_enable_unbound
+  rescue:
+    - name: show registered results
+      debug:
+        msg: "{{ unbound_start_and_enable_unbound }}"
+    - name: save journalectl -xe output
+      command: journalctl -xe
+      register: unbound_save_jounalct_xe_output
+    - name: show registered results
+      debug:
+        msg: "{{ unbound_save_jounalct_xe_output }}"
