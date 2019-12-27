@@ -9,7 +9,21 @@ on:
   - push
 
 jobs:
+  checkout:
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+  lint:
+    needs:
+      - checkout
+   steps:
+     - name: ansible-lint
+       uses: ansible/ansible-lint-action@v4.1.0.post0
   test:
+    needs:
+      - lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -89,10 +103,6 @@ jobs:
           - image: ubuntu
             tag: unstable
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
       - name: molecule
         uses: robertdebock/molecule-action@1.1.1
         with:
