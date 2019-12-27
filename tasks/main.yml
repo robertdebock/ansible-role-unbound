@@ -67,6 +67,7 @@
   template:
     src: unbound.conf.j2
     dest: /usr/local/etc/unbound/unbound.conf
+    validate: /usr/local/sbin/unbound-checkconf %s
   notify:
     - restart unbound
 
