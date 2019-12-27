@@ -9,16 +9,7 @@ on:
   - push
 
 jobs:
-  lint:
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: ansible-lint
-        uses: ansible/ansible-lint-action@v4.1.0.post0
-    runs-on: ubuntu-latest
   test:
-    needs:
-      - lint
     runs-on: ubuntu-latest
     strategy:
       matrix:

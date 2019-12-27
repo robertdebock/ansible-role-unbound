@@ -20,7 +20,6 @@
 
 - name: save unarchived directory
   set_fact:
-    # unbound_chdir: "{{ unbound_find_unarchived_directory.files[0].path }}"
     unbound_chdir: "{{ unbound_temporary_directory }}/{{ unbound_download_archive.files | first }}"
 
 - name: configure
