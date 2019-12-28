@@ -22,22 +22,28 @@
   set_fact:
     unbound_chdir: "{{ unbound_temporary_directory }}/{{ unbound_download_archive.files | first }}"
 
+- name: copy archive
+  copy:
+    src: "{{ unbound_chdir }}"
+    dest: "{{ unbound_temporary_directory }}/unbound-make"
+    remote_src: yes
+
 - name: configure
   command: ./configure --enable-systemd
   args:
-    chdir: "{{ unbound_chdir }}"
-    creates: "{{ unbound_chdir }}/Makefile"
+    chdir: "{{ unbound_temporary_directory }}/unbound-make"
+    creates: "{{ unbound_temporary_directory }}/unbound-make/Makefile"
 
 - name: make
   command: make
   args:
-    chdir: "{{ unbound_chdir }}"
+    chdir: "{{ unbound_temporary_directory }}/unbound-make"
     creates: unbound
 
 - name: make install
   command: make install
   args:
-    chdir: "{{ unbound_chdir }}"
+    chdir: "{{ unbound_temporary_directory }}/unbound-make"
     creates: /usr/local/sbin/unbound
 
 - name: make group unbound
@@ -53,7 +59,7 @@
 
 - name: install service
   copy:
-    src: "{{ unbound_chdir }}/contrib/unbound.service"
+    src: "{{ unbound_temporary_directory }}/unbound-make/contrib/unbound.service"
     dest: /etc/systemd/system/unbound.service
     remote_src: yes
   notify:
