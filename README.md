@@ -74,6 +74,9 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for unbound
 
+# What version to download/install.
+unbound_version: 1.9.6
+
 # Where to unpack unbound.
 unbound_temporary_directory: /tmp
 
