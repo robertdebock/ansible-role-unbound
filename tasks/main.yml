@@ -22,7 +22,7 @@
 - name: configure
   command: ./configure --enable-systemd
   args:
-    chdir: "{{ unbound_temporary_directory }}"
+    chdir: "{{ unbound_temporary_directory }}/unbound/{{ unbound_version }}"
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"
 
 - name: make
