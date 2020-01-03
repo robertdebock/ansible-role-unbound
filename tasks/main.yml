@@ -18,28 +18,10 @@
   register: unbound_download_archive
   until: unbound_download_archive is succeeded
   retries: 3
-
-- name: configure
-  command: ./configure --enable-systemd
-  args:
-    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
-    creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"
-
-- name: make
-  make:
-    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
-
-- name: get status of installation
-  stat:
-    path: /usr/local/sbin/unbound
-  register: unbound_get_status_of_installation
-
-- name: make install
-  make:
-    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
-    target: install
-  when:
-    - not unbound_get_status_of_installation.stat.exists
+  notify:
+    - configure
+    - make
+    - make install
 
 - name: make group unbound
   group:

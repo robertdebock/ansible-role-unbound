@@ -1,5 +1,20 @@
 ---
 # handlers file for unbound
+- name: configure
+  command: ./configure --enable-systemd
+  args:
+    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
+    creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"
+
+- name: make
+  make:
+    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
+
+- name: make install
+  make:
+    chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
+    target: install
+
 - name: systemctl daemon-reload
   systemd:
     daemon_reload: yes
