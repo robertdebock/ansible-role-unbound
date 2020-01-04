@@ -7,19 +7,6 @@ _unbound_requirements:
     - file
     - openssl-dev
     - systemd-dev
-  Archlinux:
-    - diff
-    - expat
-    - file
-    - openssl
-    - systemd
-  Debian:
-    - diffutils
-    - file
-    - libexpat1-dev
-    - libssl-dev
-    - libsystemd-dev
-    - pkg-config
   RedHat:
     - diffutils
     - expat-devel
