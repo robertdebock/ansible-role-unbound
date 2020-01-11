@@ -22,6 +22,7 @@
     - configure
     - make
     - make install
+    - install service
 
 - name: make group unbound
   group:
@@ -34,11 +35,16 @@
     group: unbound
     system: yes
 
-- name: install service
-  copy:
-    src: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/contrib/unbound.service"
-    dest: /etc/systemd/system/unbound.service
-    remote_src: yes
+- name: replace values in service file
+  replace:
+    path: /etc/systemd/system/unbound.service
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace | default(omit) }}"
+  with_items:
+    - regexp: "@UNBOUND_SBIN_DIR@"
+      replace: /usr/local/sbin
+    - regexp: "@UNBOUND_RUN_DIR@"
+    - regexp: "@UNBOUND_CHROOT_DIR@"
   notify:
     - systemctl daemon-reload
 

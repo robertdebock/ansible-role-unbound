@@ -15,6 +15,14 @@
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     target: install
 
+- name: install service
+  copy:
+    src: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/contrib/unbound.service.in"
+    dest: /etc/systemd/system/unbound.service
+    remote_src: yes
+  notify:
+    - systemctl daemon-reload
+
 - name: systemctl daemon-reload
   systemd:
     daemon_reload: yes
