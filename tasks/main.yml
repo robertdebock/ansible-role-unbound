@@ -35,6 +35,9 @@
     group: unbound
     system: yes
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: replace values in service file
   replace:
     path: /etc/systemd/system/unbound.service
@@ -47,9 +50,6 @@
     - regexp: "@UNBOUND_CHROOT_DIR@"
   notify:
     - systemctl daemon-reload
-
-- name: flush handlers
-  meta: flush_handlers
 
 - name: configure unbound
   template:
