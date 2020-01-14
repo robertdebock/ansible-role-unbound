@@ -52,6 +52,16 @@
   notify:
     - systemctl daemon-reload
 
+- name: comment lines in service file
+  replace:
+    path: /etc/systemd/system/unbound.service
+    regexp: "^({{ item }}.*)"
+    replace: '#\1'
+  loop:
+    - CapabilityBoundingSet
+    - ProtectSystem
+    - SystemCallFilter
+
 - name: configure unbound
   template:
     src: unbound.conf.j2
