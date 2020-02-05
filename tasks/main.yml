@@ -43,7 +43,7 @@
     path: /etc/systemd/system/unbound.service
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace | default(omit) }}"
-  with_items:
+  loop:
     - regexp: "@UNBOUND_SBIN_DIR@"
       replace: /usr/local/sbin
     - regexp: "@UNBOUND_RUN_DIR@"
