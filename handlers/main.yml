@@ -29,7 +29,7 @@
 
 - name: restart unbound
   service:
-    name: "{{ unbound_service }}"
+    name: unbound
     state: restarted
   when:
     - ansible_virtualization_type != "docker"
