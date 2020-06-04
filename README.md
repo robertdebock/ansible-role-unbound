@@ -2,9 +2,9 @@
 
 Install and configure unbound on your system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-unbound.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-unbound)|[![github](https://github.com/robertdebock/ansible-role-unbound/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unbound/actions)|[![quality](https://img.shields.io/ansible/quality/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![downloads](https://img.shields.io/ansible/role/d/45335)](https://galaxy.ansible.com/robertdebock/unbound)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-unbound.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-unbound)|[![github](https://github.com/robertdebock/ansible-role-unbound/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unbound/actions)|[![quality](https://img.shields.io/ansible/quality/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![downloads](https://img.shields.io/ansible/role/d/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-unbound.svg)](https://github.com/robertdebock/ansible-role-unbound/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
