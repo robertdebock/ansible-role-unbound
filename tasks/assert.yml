@@ -1,0 +1,26 @@
+---
+- name: test if unbound_version is set correctly
+  assert:
+    that:
+      - unbound_version is defined
+      - unbound_version | length > 0
+
+- name: test if unbound_temporary_directory is set correctly
+  assert:
+    that:
+      - unbound_temporary_directory is defined
+      - unbound_temporary_directory | length > 0
+
+- name: test if unbound_interface is set correctly
+  assert:
+    that:
+      - unbound_interface is defined
+      - unbound_interface | length > 0
+
+- name: test if unbound_port is set correctly
+  assert:
+    that:
+      - unbound_port is defined
+      - unbound_port | int
+      - unbound_port | int > 0
+      - unbound_port | int < 65536
