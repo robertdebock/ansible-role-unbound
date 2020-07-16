@@ -7,9 +7,6 @@
   package:
     name: "{{ unbound_requirements }}"
     state: present
-  register: unbound_install_requirements
-  until: unbound_install_requirements is succeeded
-  retries: 3
 
 - name: download archive
   unarchive:
@@ -18,9 +15,6 @@
     list_files: yes
     remote_src: yes
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
-  register: unbound_download_archive
-  until: unbound_download_archive is succeeded
-  retries: 3
   notify:
     - configure
     - make
