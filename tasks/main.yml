@@ -15,6 +15,7 @@
     list_files: yes
     remote_src: yes
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
+    mode: "0755"
   notify:
     - configure
     - make
@@ -40,6 +41,7 @@
     path: /etc/systemd/system/unbound.service
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace | default(omit) }}"
+    mode: "0755"
   loop:
     - regexp: "@UNBOUND_SBIN_DIR@"
       replace: /usr/local/sbin
@@ -54,6 +56,7 @@
     path: /etc/systemd/system/unbound.service
     regexp: "^({{ item }}.*)"
     replace: '#\1'
+    mode: "0755"
   loop:
     - CapabilityBoundingSet
     - ProtectSystem
@@ -64,6 +67,7 @@
     src: unbound.conf.j2
     dest: /usr/local/etc/unbound/unbound.conf
     validate: /usr/local/sbin/unbound-checkconf %s
+    mode: "0644"
   notify:
     - restart unbound
 

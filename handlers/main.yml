@@ -20,6 +20,7 @@
     src: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/contrib/unbound.service.in"
     dest: /etc/systemd/system/unbound.service
     remote_src: yes
+    mode: "0755"
   notify:
     - systemctl daemon-reload
 
