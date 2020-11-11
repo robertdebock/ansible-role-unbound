@@ -24,7 +24,7 @@
   assert:
     that:
       - unbound_port is defined
-      - unbound_port | int
+      - unbound_port is number
       - unbound_port | int > 0
       - unbound_port | int < 65536
     quiet: yes
