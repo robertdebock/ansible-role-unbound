@@ -1,5 +1,6 @@
 ---
 # handlers file for unbound
+
 - name: configure
   command: ./configure --enable-systemd
   args:
@@ -32,3 +33,5 @@
   service:
     name: unbound
     state: restarted
+  when:
+    - not ansible_check_mode | bool
