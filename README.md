@@ -2,9 +2,9 @@
 
 Install and configure unbound on your system.
 
-|Travis|GitHub|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-unbound.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-unbound)|[![github](https://github.com/robertdebock/ansible-role-unbound/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unbound/actions)|[![quality](https://img.shields.io/ansible/quality/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![downloads](https://img.shields.io/ansible/role/d/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-unbound.svg)](https://github.com/robertdebock/ansible-role-unbound/releases/)|
+|Travis|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-unbound.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-unbound)|[![github](https://github.com/robertdebock/ansible-role-unbound/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-unbound/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-unbound/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-unbound)|[![quality](https://img.shields.io/ansible/quality/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![downloads](https://img.shields.io/ansible/role/d/45335)](https://galaxy.ansible.com/robertdebock/unbound)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-unbound.svg)](https://github.com/robertdebock/ansible-role-unbound/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -58,10 +58,11 @@ unbound_port: 53
 
 ## [Requirements](#requirements)
 
-- Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-unbound/blob/master/requirements.txt).
 
 ## [Status of requirements](#status-of-requirements)
+
+The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
 
 | Requirement | Travis | GitHub |
 |-------------|--------|--------|
