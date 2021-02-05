@@ -18,6 +18,14 @@
       package:
         name: "{{ nslookup_package }}"
         state: present
+      notify:
+        - remove nslookup
 
     - name: nslookup robertdebock.nl
       command: nslookup robertdebock.nl
+
+  handlers:
+    - name: remove nslookup
+      package:
+        name: "{{ nslookup)_package }}"
+        state: absent
