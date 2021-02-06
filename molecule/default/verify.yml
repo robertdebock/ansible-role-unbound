@@ -27,5 +27,5 @@
   handlers:
     - name: remove nslookup
       package:
-        name: "{{ nslookup)_package }}"
+        name: "{{ nslookup_package }}"
         state: absent
