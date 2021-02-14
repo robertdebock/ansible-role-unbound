@@ -8,16 +8,16 @@
     creates: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/Makefile"
 
 - name: make
-  make:
+  community.general.make:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
 
 - name: make install
-  make:
+  community.general.make:
     chdir: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}"
     target: install
 
 - name: install service
-  copy:
+  ansible.builtin.copy:
     src: "{{ unbound_temporary_directory }}/unbound-{{ unbound_version }}/contrib/unbound.service.in"
     dest: /etc/systemd/system/unbound.service
     remote_src: yes
@@ -26,11 +26,11 @@
     - systemctl daemon-reload
 
 - name: systemctl daemon-reload
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
 
 - name: restart unbound
-  service:
+  ansible.builtin.service:
     name: unbound
     state: restarted
   when:
