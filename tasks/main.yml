@@ -7,12 +7,12 @@
   delegate_to: localhost
 
 - name: install requirements
-  package:
+  ansible.builtin.package:
     name: "{{ unbound_requirements }}"
     state: present
 
 - name: download archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "https://nlnetlabs.nl/downloads/unbound/unbound-{{ unbound_version }}.tar.gz"
     dest: "{{ unbound_temporary_directory }}"
     list_files: yes
@@ -26,21 +26,21 @@
     - install service
 
 - name: make group unbound
-  group:
+  ansible.builtin.group:
     name: unbound
     system: yes
 
 - name: make user unbound
-  user:
+  ansible.builtin.user:
     name: unbound
     group: unbound
     system: yes
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: replace values in service file
-  replace:
+  ansible.builtin.replace:
     path: /etc/systemd/system/unbound.service
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace | default(omit) }}"
@@ -55,7 +55,7 @@
     - systemctl daemon-reload
 
 - name: comment lines in service file
-  replace:
+  ansible.builtin.replace:
     path: /etc/systemd/system/unbound.service
     regexp: "^({{ item }}.*)"
     replace: '#\1'
@@ -66,7 +66,7 @@
     - SystemCallFilter
 
 - name: configure unbound
-  template:
+  ansible.builtin.template:
     src: unbound.conf.j2
     dest: /usr/local/etc/unbound/unbound.conf
     validate: /usr/local/sbin/unbound-checkconf %s
@@ -75,10 +75,10 @@
     - restart unbound
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: start and enable unbound
-  service:
+  ansible.builtin.service:
     name: unbound
     state: started
     enabled: yes
