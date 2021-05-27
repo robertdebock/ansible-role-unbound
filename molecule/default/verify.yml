@@ -22,7 +22,8 @@
         - remove nslookup
 
     - name: nslookup robertdebock.nl
-      command: nslookup robertdebock.nl
+      ansible.builtin.command:
+        cmd: nslookup robertdebock.nl
 
   handlers:
     - name: remove nslookup
