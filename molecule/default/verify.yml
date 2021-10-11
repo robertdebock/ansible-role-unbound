@@ -26,6 +26,7 @@
         cmd: nslookup robertdebock.nl
 
   handlers:
+
     - name: remove nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
