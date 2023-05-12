@@ -14,20 +14,20 @@
     nslookup_package: "{{ _nslookup_package[ansible_os_family] | default(_nslookup_package['default']) }}"
 
   tasks:
-    - name: install nslookup
+    - name: Install nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: present
       notify:
         - remove nslookup
 
-    - name: nslookup robertdebock.nl
+    - name: Nslookup robertdebock.nl
       ansible.builtin.command:
         cmd: nslookup robertdebock.nl
 
   handlers:
 
-    - name: remove nslookup
+    - name: Remove nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
         state: absent
