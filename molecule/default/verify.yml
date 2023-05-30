@@ -19,14 +19,13 @@
         name: "{{ nslookup_package }}"
         state: present
       notify:
-        - remove nslookup
+        - Remove nslookup
 
     - name: Nslookup robertdebock.nl
       ansible.builtin.command:
         cmd: nslookup robertdebock.nl
 
   handlers:
-
     - name: Remove nslookup
       ansible.builtin.package:
         name: "{{ nslookup_package }}"
