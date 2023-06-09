@@ -5,6 +5,7 @@
     that:
       - unbound_version is defined
       - unbound_version is string
+      - unbound_version is not none
     quiet: yes
 
 - name: assert | Test if unbound_temporary_directory is set correctly
@@ -12,6 +13,7 @@
     that:
       - unbound_temporary_directory is defined
       - unbound_temporary_directory is string
+      - unbound_temporary_directory is not none
     quiet: yes
 
 - name: assert | Test if unbound_interface is set correctly
@@ -19,6 +21,7 @@
     that:
       - unbound_interface is defined
       - unbound_interface is string
+      - unbound_interface is not none
     quiet: yes
 
 - name: assert | Test if unbound_port is set correctly
