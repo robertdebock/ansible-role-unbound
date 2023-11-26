@@ -1,4 +1,4 @@
-# Ansible role [unbound](#unbound)
+# [Ansible role unbound](#unbound)
 
 Install and configure unbound on your system.
 
