@@ -1,0 +1,13 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "unbound" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.core_dependencies" [fillcolor=green style=filled]
+  }
+  "unbound" -> "robertdebock.bootstrap"
+  "unbound" -> "robertdebock.buildtools"
+  "unbound" -> "robertdebock.core_dependencies"
+}
